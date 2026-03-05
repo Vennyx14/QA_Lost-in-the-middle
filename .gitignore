@@ -1,0 +1,23 @@
+# Bỏ qua các thư mục môi trường ảo Python
+venv/
+env/
+.env
+
+# Bỏ qua cache của Python
+__pycache__/
+*.py[cod]
+
+# Bỏ qua dữ liệu
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Bỏ qua cache của Hugging Face và Jupyter
+.cache/
+.ipynb_checkpoints/
+
+# Bỏ qua file log và output kết quả nặng
+results/*.png
+results/*.csv
+*.log
