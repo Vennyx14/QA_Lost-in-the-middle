@@ -209,7 +209,3 @@ __marimo__/
 # Output results
 results/*.png
 results/*.csv
-
-# Data
-data/raw/*
-data/processed/*
