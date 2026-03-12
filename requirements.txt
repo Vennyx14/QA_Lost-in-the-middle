@@ -1,0 +1,18 @@
+# Jupyter notebook
+jupyter
+
+# Data Processing & Management
+datasets
+pandas
+numpy
+
+# Core Deep Learning
+transformers
+
+# Information Retrieval & Embedding
+sentence-transformers
+faiss-cpu
+rank_bm25
+
+# Utilities & Monitoring
+tqdm
