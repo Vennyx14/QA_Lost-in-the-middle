@@ -24,6 +24,7 @@ QA_Advanced_RAG/
 │       ├── __init__.py
 │       └── metrics.py
 ├── notebooks/               # Nơi chạy nháp, test thuật toán lẻ
+├── test_retriever.py        # Test truy xuất dữ liệu
 ├── main.py                  # File khởi chạy toàn bộ luồng
 ├── requirements.txt         # underthesea, sentence-transformers, faiss-cpu, torch
 └── README.md
