@@ -3,8 +3,10 @@ Pipeline:
 QA_Advanced_RAG/
 ├── data/
 │   ├── raw/                 # Chứa file train.json, dev.json nguyên bản
-│   └── processed/           # Chứa file đã tách từ bằng underthesea và trộn nhiễu
+│   ├── processed/           # Chứa file đã tách từ bằng underthesea và trộn nhiễu
+│   └── index/               # Nơi lưu file database vector(VD:faiss_index.bin)
 ├── src/
+│   ├── config.py            # Chứa đường dẫn file và tên model
 │   ├── __init__.py
 │   ├── data_prep/           # Phụ trách xử lý văn bản tiếng Việt
 │   │   ├── __init__.py
