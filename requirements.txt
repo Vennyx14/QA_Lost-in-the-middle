@@ -6,6 +6,9 @@ datasets
 pandas
 numpy
 
+# Visualize result
+matplotlib
+
 # Core Deep Learning
 transformers
 
@@ -16,3 +19,14 @@ rank_bm25
 
 # Utilities & Monitoring
 tqdm
+
+# Tokenize
+underthesea
+py_vncorenlp
+spacy
+
+# Word Embedding
+gensim
+
+# Format Python string to dictionaries
+conllu
