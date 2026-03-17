@@ -1,5 +1,9 @@
 import json
 
+"""
+    Đưa các dataset raw về định dạng 1 question 1 answer, gộp vào thành 1 file duy nhất
+"""
+
 #mmarco-EnVi
 mmarco_in = "data/raw/mmarco-EnVi-subdataset/train.jsonl"
 

@@ -2,6 +2,10 @@ import json
 import random
 import os
 
+"""
+    Phân chia dataset thành 3 tập: train - valid - test (80 - 10 - 10)
+"""
+
 def merge_split_data():
     input_file = "data/processed/processed_data.jsonl"
     output_train = "data/processed/train.jsonl"
