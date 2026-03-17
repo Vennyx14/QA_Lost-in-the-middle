@@ -16,6 +16,7 @@ transformers
 sentence-transformers
 faiss-cpu
 rank_bm25
+py_vncorenlp
 
 # Utilities & Monitoring
 tqdm

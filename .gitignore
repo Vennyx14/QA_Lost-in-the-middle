@@ -209,3 +209,32 @@ __marimo__/
 # Output results
 results/*.png
 results/*.csv
+
+# =========================
+# Machine Learning Models & Binaries
+# =========================
+# Ignore VnCoreNLP downloaded files
+vncorenlp_models/
+*.jar
+
+# Ignore FAISS vector databases
+data/index/
+*.faiss
+*.bin
+*.npy
+
+# =========================
+# Python Artifacts
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# =========================
+# Data
+# =========================
+# Ignore raw and processed data to avoid GitHub storage limits
+data/raw/
+data/processed/
