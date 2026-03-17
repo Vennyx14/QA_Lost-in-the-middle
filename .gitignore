@@ -232,9 +232,6 @@ __pycache__/
 venv/
 .env
 
-# =========================
-# Data
-# =========================
-# Ignore raw and processed data to avoid GitHub storage limits
-data/raw/
-data/processed/
+# Avoid large model files (i.e pyvncorenlp model repo) 
+# that can affect repo's stability
+model/
