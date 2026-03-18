@@ -7,10 +7,10 @@ import os
 """
 
 def merge_split_data():
-    input_file = "data/processed/processed_data.jsonl"
-    output_train = "data/processed/train.jsonl"
-    output_valid = "data/processed/validation.jsonl"
-    output_test = "data/processed/test.jsonl"
+    input_file = "dataset/preprocessed/processed_data.jsonl"
+    output_train = "dataset/preprocessed/train.jsonl"
+    output_valid = "dataset/preprocessed/validation.jsonl"
+    output_test = "dataset/preprocessed/test.jsonl"
 
     combined_data = []
     if os.path.exists(input_file):
