@@ -17,7 +17,7 @@ queries_in = "dataset/raw/tydiqa-goldp-vietnamese/queries.jsonl"
 uit_in = ["dataset/raw/UIT-ViQuAD2.0/train.jsonl", "dataset/raw/UIT-ViQuAD2.0/validation.jsonl"]
 
 mmarco_out = "dataset/preprocessed/pr_mmarco.jsonl"
-goldp_out = "dataset/preprocessed/pr_goldp.jsonl"
+goldp_out = "dataset/preprocessed/pr_goldp_test.jsonl"
 uit_out = "dataset/preprocessed/pr_uit.jsonl"
 
 # output = "dataset/preprocessed/processed_data.jsonl"
