@@ -8,6 +8,8 @@ QA_Advanced_RAG/
 │ 
 ├── benchmark_tokenize
 │ 
+├── word2vec
+│ 
 ├── src/
 │   ├── config.py            # Chứa đường dẫn file và tên model
 │   ├── __init__.py
