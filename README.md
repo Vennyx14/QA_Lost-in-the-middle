@@ -5,6 +5,9 @@ QA_Advanced_RAG/
 │   ├── raw/                 # Chứa file train.json, dev.json nguyên bản
 │   ├── processed/           # Chứa file đã tách từ bằng underthesea và trộn nhiễu
 │   └── index/               # Nơi lưu file database vector(VD:faiss_index.bin)
+│ 
+├── benchmark_tokenize
+│ 
 ├── src/
 │   ├── config.py            # Chứa đường dẫn file và tên model
 │   ├── __init__.py
