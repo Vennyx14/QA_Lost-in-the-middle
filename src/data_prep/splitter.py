@@ -60,13 +60,11 @@ class SentenceSplitter:
             return []
             
         if self.use_vncorenlp and self.segmenter is not None:
-            # Lợi thế cốt lõi: word_segment() mặc định trả về List các câu.
-            # VD: ["Câu số_một đã tách .", "Câu số_hai ."]
             try:
                 sentences = self.segmenter.word_segment(text)
                 return [s for s in sentences if len(s.split()) >= min_words]
             except Exception as e:
-                print(f"[!] Lỗi khi chạy VnCoreNLP split: {e}. Đang chuyển về Regex fallback...")
+                print(f"[!] Error when running VnCoreNLP split: {e}.Switching to Regex fallback...")
                 return self._regex_split(text, min_words)
         else:
             return self._regex_split(text, min_words)
@@ -76,13 +74,13 @@ class SentenceSplitter:
         The fallback function uses Regex to quickly split sentences.
         Uses lookbehind to keep the punctuation.
         """
-        # Cắt dựa trên dấu chấm, hỏi, cảm thán đi kèm khoảng trắng
+
         raw_sentences = re.split(r'(?<=[.!?])\s+', text.strip())
         
         cleaned_sentences = []
         for s in raw_sentences:
             s = s.strip()
-            # Lọc bỏ nhiễu và các câu quá ngắn
+
             if len(s.split()) >= min_words:
                 cleaned_sentences.append(s)
                 
@@ -90,7 +88,7 @@ class SentenceSplitter:
 
 # --- Unit Testing ---\r
 if __name__ == "__main__":
-    # Test 1: Chạy Regex (Tốc độ ánh sáng)
+    # Test 1: Run Regex
     print("--- TEST REGEX MODE ---")
     fast_splitter = SentenceSplitter(use_vncorenlp=False)
     sample_text = "Trí tuệ nhân tạo (AI) đang phát triển rất nhanh! Đặc biệt là các mô hình LLM. Tuy nhiên, hiện tượng Lost in the Middle vẫn là một thách thức lớn. K.H.T.N là viết tắt của Khoa học tự nhiên."
@@ -100,12 +98,12 @@ if __name__ == "__main__":
         print(f"Câu {i+1}: {s}")
         
     print("\n--- TEST VNCORENLP MODE ---")
-    # Test 2: Chạy VnCoreNLP (Chuẩn xác, dùng cho module 3 Compression)
+    # Test 2: VnCoreNLP
     try:
-        # Nếu máy bạn đã tải model thì đổi use_vncorenlp=True để test
+
         accurate_splitter = SentenceSplitter(use_vncorenlp=True)
         accurate_results = accurate_splitter.split(sample_text)
         for i, s in enumerate(accurate_results):
             print(f"Câu {i+1}: {s}")
     except Exception as e:
-        print(f"Bỏ qua test VnCoreNLP do lỗi cấu hình: {e}")
+        print(f"Skip VnCoreNLP test due to configuration error: {e}")
