@@ -2,9 +2,9 @@ import os
 import numpy as np
 
 # Import 3 core modules
-from src.data_prep.segmenter import VietnameseSegmenter
-from src.retriever.embedding import VietnameseEmbedder
-from src.retriever.faiss_index import FAISSRetriever
+from data_prep.segmenter import VietnameseSegmenter
+from retriever.embedding import VietnameseEmbedder
+from retriever.faiss_index import FAISSRetriever
 
 def main():
     """
