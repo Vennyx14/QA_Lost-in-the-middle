@@ -1,0 +1,52 @@
+import os
+import warnings
+
+# 1. Tắt cảnh báo Symlink và Token của Hugging Face
+os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
+os.environ["HF_HUB_DISABLE_IMPLICIT_TOKEN_WARNING"] = "1"
+
+# 2. Tắt các luồng log dài dòng của Transformers
+os.environ["TRANSFORMERS_VERBOSITY"] = "error"
+
+# 3. Ẩn toàn bộ UserWarning của Python
+warnings.filterwarnings("ignore")
+# -------------------------------------------
+
+from retriever.search import FAISSRetriever # File của bạn đã có
+from data_prep.splitter import SentenceSplitter
+from compressor.scorer import DummyScorer
+from compressor.selector import ContextSelector
+
+def test_pipeline():
+    query = "Nguyên lý hoạt động của kiến trúc Transformer là gì?"
+    
+    # 1. RETRIEVAL (Đã hoàn thành)
+    # Giả sử hàm này trả về string của văn bản top 1
+    # retriever = FAISSRetriever(...)
+    # top_doc = retriever.search(query, k=1)[0]
+    
+    top_doc = "Transformer là một kiến trúc học sâu. Nó dựa hoàn toàn vào cơ chế self-attention. Khác với RNN, nó xử lý song song toàn bộ chuỗi đầu vào. Điều này giúp tăng tốc độ huấn luyện lên rất nhiều lần. Tuy nhiên bộ nhớ yêu cầu cũng tăng theo bình phương độ dài chuỗi.Transformers trong machine learning hoạt động dựa trên nguyên lý attention mechanism. Điều này có nghĩa là mô hình này có thể phân tích toàn bộ câu một cách đồng thời thay vì đọc từng từ một cách riêng lẻ. Điều này rất hữu ích vì các mô hình như RNNs và LSTMs thường gặp khó khăn trong việc duy trì liên kết giữa các từ trong câu dài."
+    
+    # 2. SPLITTING
+    splitter = SentenceSplitter()
+    sentences = splitter.split(top_doc)
+    print(f"Tổng số câu: {len(sentences)}")
+    
+    # 3. SCORING (Chờ Trung thay DummyScorer bằng PhoBERTScorer)
+    scorer = DummyScorer()
+    scores = scorer.score_sentences(query, sentences)
+    print(f"Điểm số (Giả lập): {scores}")
+    
+    # 4. COMPRESSION (Test file selector.py)
+    selector = ContextSelector(token_limit=30) # Để 30 tokens cho dễ test
+    
+    print("\n--- KẾT QUẢ NÉN (STRATEGY: SINGLE) ---")
+    compressed_text = selector.select(
+        method="single", 
+        sentences=sentences, 
+        scores=scores
+    )
+    print(compressed_text)
+
+if __name__ == "__main__":
+    test_pipeline()
