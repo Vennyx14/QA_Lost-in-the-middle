@@ -109,6 +109,30 @@ class QAMetrics:
         # Trả về list docs id đã sắp xếp, và list điểm tương ứng
         return ranked_docs_id, ranked_score
 
+    @staticmethod
+    def calculate_hybrid(scores, sentences, docs_ids, alpha = 0.7):
+        """
+        Tính điểm văn bản bằng cách kết hợp Max-Pooling và Mean-Pooling
+        alpha: Trọng số ưu tiên cho câu cao nhất (0 < alpha < 1)
+        1 - alpha: Trọng số cho độ tập trung trung bình của văn bản
+        """
+        # Nhóm điểm của các câu theo từng tập văn bản
+        docs_score_list = defaultdict(list)
+        for score, doc_id in zip(scores, docs_ids):
+            docs_score_list[doc_id].append(score)
+
+        final_scores = []
+        for doc_id, score_list in docs_score_list.items():
+            max_val = max(score_list)
+            mean_val = sum(score_list)/len(score_list)
+            hybrid_score = alpha * max_val + (1-alpha)*mean_val
+            final_scores.append((doc_id,hybrid_score))
+
+        rank_docs = sorted(final_scores, key = lambda x : x[1], reverse = True)
+        ranked_docs_id = [item[0] for item in rank_docs]
+        ranked_score = [item[1] for item in rank_docs]
+
+        return ranked_docs_id, ranked_score
 
 # Ví dụ sử dụng
 if __name__ == "__main__":
